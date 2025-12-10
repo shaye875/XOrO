@@ -41,9 +41,9 @@ export function checkIf3(board, player, AI) {
 }
 
 export function playersAI(){
-    let name = readLineSync.question("what is your name: ")
     let signA = readLineSync.question("enter sign: ")
-    player = createPlayer(name,signA)
+    let player = createPlayer(signA)
+    console.log(player)
     const signs = ["X", "O"]
     let signB
     for (let s of signs) {
@@ -52,21 +52,25 @@ export function playersAI(){
             break
         }
     }
-    let AI = (createPlayer("AI",signB))
+    let AI = (createPlayer(signB))
     return [player,AI]
 }
 
 export function AImoving(board,AI,player){
-   let rowCol = checkIf3(board,AI,player)
-   if (rowCol){
+   let rowCol = checkIf3(board,player,AI)
+   if (rowCol.length>0){
     return rowCol
    }
+   let row
+   let col
    while (true){
-    let row = Math.floor(Math.random()*3)
-    let col = Math.floor(Math.random()*3)
+    row = Math.floor(Math.random()*3)
+    col = Math.floor(Math.random()*3)
+    console.log(row,col);
     if (board[row][col] != "_"){
         continue
     }
-    return [row,col]
+    break
    }
+   return [row,col]
 }

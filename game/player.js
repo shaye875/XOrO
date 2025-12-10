@@ -31,6 +31,7 @@ export function checkIsOver(board, players) {
         for (let j = 0; j < board[i].length; j++) {
             if (j <= board[i].length - 3) {
                 if (board[i][j] != "_" && board[i][j] === board[i][j + 1] && board[i][j] === board[i][j + 2]) {
+                    console.log(1);
                     sign = board[i][j]
                     check = true
                 }
@@ -38,30 +39,35 @@ export function checkIsOver(board, players) {
 
             if (j >= 2) {
                 if (board[i][j] != "_" && board[i][j] === board[i][j - 1] && board[i][j] === board[i][j - 2]) {
+                    console.log(2);
                     sign = board[i][j]
                     check = true
                 }
             }
             if (i >= 2) {
                 if (board[i][j] != "_" && board[i][j] === board[i - 1][j] && board[i][j] === board[i - 2][j]) {
+                    console.log(3);
                     sign = board[i][j]
                     check = true
                 }
             }
             if (i <= board.length - 3) {
-                if (board[i][j] != "_" && board[i][j] === board[i+1][j] && board[i][j] === board[i+1][j]) {
+                if (board[i][j] != "_" && board[i][j] === board[i+1][j] && board[i][j] === board[i+2][j]) {
+                    console.log(4);
                     sign = board[i][j]
                     check = true
                 }
             }
             if (i >= 2 && j <= board[i].length - 3) {
                 if (board[i][j] != "_" && board[i][j] === board[i - 1][j+1] && board[i][j] === board[i - 2][j+2]) {
+                    console.log(5);
                     sign = board[i][j]
                     check = true
                 }
             }
             if (i >= 2 && j >= 2) {
                 if (board[i][j] != "_" && board[i][j] === board[i - 1][j-1] && board[i][j] === board[i - 2][j-2]) {
+                    console.log(6);
                     sign = board[i][j]
                     check = true
                 }
@@ -69,13 +75,14 @@ export function checkIsOver(board, players) {
         }
         if (check === true) {
             for (let p of players) {
-                if (p.sign === board[i][j]) {
+                if (p.sign === sign) {
                     console.log(p.name, "win");
                     return true
                 }
             }
         }
-        return false
+       
     }
+    return false
 }
 
